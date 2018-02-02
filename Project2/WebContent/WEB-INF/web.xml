@@ -34,11 +34,18 @@
     <servlet-name>TomcatFormServlet</servlet-name>
     <servlet-class>TomcatForm</servlet-class>
   </servlet>
-
-
+  <servlet>
+    <servlet-name>MovieListServlet</servlet-name>
+    <servlet-class>MovieList</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>TomcatFormServlet</servlet-name>
     <url-pattern>/servlet/TomcatForm</url-pattern>
   </servlet-mapping>
-
+  
+  <servlet-mapping>
+    <servlet-name>MovieListServlet</servlet-name>
+    <url-pattern>/servlet/MovieList</url-pattern>
+  </servlet-mapping>
 </web-app>
