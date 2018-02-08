@@ -1,0 +1,209 @@
+SELECT SQL_CALC_FOUND_ROWS m.id AS ID,m.title AS Title,m.year AS Year,m.director AS Director,g.name AS Genre,s.name AS Name FROM movies m,stars s, genres g,stars_in_movies sm, genres_in_movies gm WHERE ( m.id = sm.movieId) AND (s.id=sm.starID AND g.id=gm.genreId);
+
+
+
+select m.id,m.year,m.director,m.title from stars s, movies m, genres g, stars_in_movies sm, genres_in_movies gm where m.id = sm.movieID 
+and (s.id = sm.starID and g.id = gm.genreID and gm.movieID = m.id) and m.title like '%Emilio%' group by m.id;
+
+
+select m.id,m.year,m.director,m.title 
+from stars s, movies m, genres g, stars_in_movies sm, genres_in_movies gm 
+where m.id = sm.movieID and (s.id = sm.starID and g.id = gm.genreID and gm.movieID = m.id) and m.title like '%Emilio%' group by m.id;
+
+
+select g.id, g.name from genres g, genres_in_movies gim where g.id=gim.genreID and movieID=tt0499469;
+
+
+<%@ page import="Fabflix.*"%>
+<%@ page language="java"
+	import="java.sql.*, 
+	java.util.*,
+	java.io.IOException,
+	javax.servlet.http.*,
+	javax.servlet.*"%>
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+List<Movie> movies = (List<Movie>)session.getAttribute("movie_list");
+
+int noOfPages = (int)session.getAttribute("noOfPages");
+
+if (movies == null){
+    movies = new ArrayList<Movie>();
+}
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="sorttable.js"></script>
+<script src="ajxmouseover.js"></script>
+<!-- 
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//raw.github.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+-->
+<script 
+
+src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script 
+
+src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script 
+
+src="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.js">
+</script>
+<link rel="stylesheet" 
+
+href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" 
+
+href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.css">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+<!--
+	table {
+	    border-spacing: 0;
+	    width: 100%;
+	    border: 1px solid #ddd;
+	}
+	
+	
+	th, td {
+	    text-align: left;
+	    padding: 16px;
+	}
+	th {
+		cursor:pointer;
+	}
+	tr:nth-child(even) {
+	    background-color: #f2f2f2
+	}
+-->
+</style>
+</head>
+<body>
+
+<h3>list of movies:</h3>
+<p>
+<p>
+<td><a href="/Project2/search.jsp">Go back to search</a></td>
+<div id="content">
+	<table id = "movieTable">
+		<tr>
+			<th>
+				Movie ID
+			</th>
+			<th onclick="sortTable(1)">Movie Name</th>
+			<th onclick="sortTable(0)">Year</th>
+			<th>Director</th>
+			<th>List Genre</th>
+			<th>Actors List</th>
+			<th>Buy</th>
+		</tr>
+	
+		<% 
+			for (Movie movie:movies) {
+		%>
+		<tr>
+			<td style="border-right: solid;"><%=movie.getMovieID() %></td>
+			<td style="border-right: solid;"><%=movie.getTitle() %></td>
+			
+			<td style="border-right: solid;"><%=movie.getYear() %></td>
+			<td style="border-right: solid;"><%=movie.getDirector() %></td>
+			<td style="border-right: solid;"><a
+				href="/Project2/genreList?movieID=<%=movie.getMovieID()%>">list Category</a></td>
+			<td style="border-right: solid;"><a
+				href="/Project2/starList?movieID=<%=movie.getMovieID()%>">list Stars</a></td>
+			<td style="border-right: solid;"><a
+				href="/Project2/checkout?movieID=<%=movie.getMovieID()%>">Buy</a></td>
+		</tr>
+		<%
+		  }
+		
+		%>
+	</table>
+</div>
+<br>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('movieTable').dataTable({
+        		paginate: false,
+        	  	scrollY: 300
+        };
+    });
+</script>
+
+
+<td><a href="/Project2/search.jsp">Go back to search</a></td>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("movieTable");
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc"; 
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;      
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>

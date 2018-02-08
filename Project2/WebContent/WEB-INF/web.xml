@@ -1,51 +1,61 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
-  Copyright 2004 The Apache Software Foundation
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
-
-<!DOCTYPE web-app
-    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-    "http://java.sun.com/dtd/web-app_2_3.dtd">
-
-<web-app>
-
-    <display-name>Test Tomcat Connection to MySQL DB</display-name>
-    <description>
-      Test Tomcat Connection to mySQL DB
-    </description>
-
-
-  <!-- Define servlets that are included in the example application -->
-
-
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>Project2</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
   <servlet>
-    <servlet-name>TomcatFormServlet</servlet-name>
-    <servlet-class>TomcatForm</servlet-class>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>Fabflix.SearchServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>MovieListServlet</servlet-name>
-    <servlet-class>MovieList</servlet-class>
-  </servlet>
-  
   <servlet-mapping>
-    <servlet-name>TomcatFormServlet</servlet-name>
-    <url-pattern>/servlet/TomcatForm</url-pattern>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>StarServlet</servlet-name>
+    <servlet-class>Fabflix.StarList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StarServlet</servlet-name>
+    <url-pattern>/starList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GenreServlet</servlet-name>
+    <servlet-class>Fabflix.GenreList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GenreServlet</servlet-name>
+    <url-pattern>/genreList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SingleMoviePageServlet</servlet-name>
+    <servlet-class>Fabflix.SingleMoviePageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SingleMoviePageServlet</servlet-name>
+    <url-pattern>/singleMoviePage</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SingleStarPageServlet</servlet-name>
+    <servlet-class>Fabflix.SingleStarPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SingleStarPageServlet</servlet-name>
+    <url-pattern>/singleStarPage</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>BrowseServlet</servlet-name>
+    <servlet-class>Fabflix.BrowseServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
-    <servlet-name>MovieListServlet</servlet-name>
-    <url-pattern>/servlet/MovieList</url-pattern>
+    <servlet-name>BrowseServlet</servlet-name>
+    <url-pattern>/browse</url-pattern>
   </servlet-mapping>
 </web-app>
