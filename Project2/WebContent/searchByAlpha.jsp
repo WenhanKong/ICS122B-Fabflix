@@ -90,5 +90,8 @@
 		</tbody>
 		</table>
 		<td><a href="/Project2/browse.jsp">Back to Browse</a></td>
+			<br>
+	<br>
+	<button style="float:right" onclick="window.location.href='shoppingCart.jsp'">Checkout</button>
 	</body>
 </html>

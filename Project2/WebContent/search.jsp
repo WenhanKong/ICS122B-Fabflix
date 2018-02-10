@@ -50,6 +50,8 @@
 			</form>
 		</div>
 	</section>
-
+		<br>
+	<br>
+	<button style="float:right" onclick="window.location.href='shoppingCart.jsp'">Checkout</button>
 </body>
 </html>

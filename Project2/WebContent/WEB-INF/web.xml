@@ -9,6 +9,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>Fabflix.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name> <!-- mandatory -->
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
   <servlet>
     <servlet-name>SearchServlet</servlet-name>
     <servlet-class>Fabflix.SearchServlet</servlet-class>
@@ -49,7 +59,6 @@
     <servlet-name>SingleStarPageServlet</servlet-name>
     <url-pattern>/singleStarPage</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>BrowseServlet</servlet-name>
     <servlet-class>Fabflix.BrowseServlet</servlet-class>
@@ -57,5 +66,29 @@
   <servlet-mapping>
     <servlet-name>BrowseServlet</servlet-name>
     <url-pattern>/browse</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ShoppingCartServlet</servlet-name>
+    <servlet-class>Fabflix.ShoppingCartServelt</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShoppingCartServlet</servlet-name>
+    <url-pattern>/shoppingCart</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>UpdateShoppingCart</servlet-name>
+    <servlet-class>Fabflix.UpdateShoppingCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateShoppingCart</servlet-name>
+    <url-pattern>/updateShoppingCart</url-pattern>
+  </servlet-mapping>
+     <servlet>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <servlet-class>Fabflix.CheckoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <url-pattern>/checkout</url-pattern>
   </servlet-mapping>
 </web-app>

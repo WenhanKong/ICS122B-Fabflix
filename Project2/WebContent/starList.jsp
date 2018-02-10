@@ -67,6 +67,10 @@ List<Star> stars = (List<Star>)session.getAttribute("star_list");
 		<br>
 		<td style="border-right: solid;"><a
 				href="/Project2/search.jsp">Back to Search</a></td>
+				
+		<br>
+	<br>
+	<button style="float:right" onclick="window.location.href='shoppingCart.jsp'">Checkout</button>
 </body>
 </html>
 

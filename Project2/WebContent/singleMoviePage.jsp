@@ -10,7 +10,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-
+//Movie movie = (Movie)session.getAttribute(arg0)
 String movieID  = (String)session.getAttribute("movieID");
 String title  = (String)session.getAttribute("title");
 int year  = (int)session.getAttribute("year");
@@ -40,7 +40,7 @@ String director  = (String)session.getAttribute("director");
 	</head>
 	<body>
 
-		<h3>list of stars:</h3>
+		<h3>Information for Movie:</h3>
 		<p>
 		<p>
 		<table id = single_movie_table class="display" cellspacing="0" width="100%">
@@ -50,9 +50,9 @@ String director  = (String)session.getAttribute("director");
 					<th>Movie Title</th>
 					<th>Year</th>
 					<th>Director</th>
-					<th>List of Genres</th>
-					<th>List of Stars </th>
-					
+					<th></th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -67,6 +67,12 @@ String director  = (String)session.getAttribute("director");
 						href="/Project2/genreList?movieID=<%=movieID%>">List of Genres</a></td>
 					<td><a
 						href="/Project2/StarList?movieID=<%=movieID%>">List of Stars</a></td>
+					<td>
+						<form action = "shoppingCartServlet?movieID=<%=movieID%>&title=<%=title%>" method="post" name="addtocart">
+							<button type="submit" value="Add to Cart">Add to Cart</button>
+						</form>
+						
+					</td>
 				</tr>
 			
 			</tbody>
@@ -74,6 +80,9 @@ String director  = (String)session.getAttribute("director");
 		<br>
 		<td style="border-right: solid;"><a
 				href="/Project2/search.jsp">Back to Search</a></td>
+					<br>
+	<br>
+	<button style="float:right" onclick="window.location.href='shoppingCart.jsp'">Checkout</button>
 </body>
 </html>
 

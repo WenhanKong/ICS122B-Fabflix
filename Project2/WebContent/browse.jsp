@@ -106,9 +106,9 @@ if(movies==null){
 				<th>Movie Name</th>
 				<th>Year</th>
 				<th>Director</th>
-				<th>List Genre</th>
-				<th>Actors List</th>
-				<th>Buy</th>
+				<th></th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -125,8 +125,11 @@ if(movies==null){
 					href="/Project2/genreList?movieID=<%=movie.getMovieID()%>">Genres</a></td>
 				<td><a
 					href="/Project2/starList?movieID=<%=movie.getMovieID()%>">Stars</a></td>
-				<td><a
-					href="/Project2/checkout?movieID=<%=movie.getMovieID()%>">Buy</a></td>
+				<td>
+					<form action = "shoppingCartServlet?movieID=<%=movie.getMovieID() %>&&title=<%=movie.getTitle() %>" method="post" name="addtocart">
+							<button type="submit" value="Add to Cart">Add to Cart</button>
+					</form>
+				</td>
 			</tr>
 			<%
 			  }
@@ -172,6 +175,9 @@ if(movies==null){
 		
 		
 	</div>
+	<br>
+	<br>
+	<button style="float:right" onclick="window.location.href='shoppingCart.jsp'">Checkout</button>
 </body>
 	
 </html>

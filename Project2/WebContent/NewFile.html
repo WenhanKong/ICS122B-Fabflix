@@ -13,6 +13,9 @@ where m.id = sm.movieID and (s.id = sm.starID and g.id = gm.genreID and gm.movie
 
 select g.id, g.name from genres g, genres_in_movies gim where g.id=gim.genreID and movieID=tt0499469;
 
+select * from creditcards where id = '0011 2233 4455 6677' and firstName = 'Bill' and lastName = 'Wang' and expiration = '2009-09-07';
+
+
 
 <%@ page import="Fabflix.*"%>
 <%@ page language="java"

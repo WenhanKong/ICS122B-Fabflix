@@ -16,8 +16,8 @@ public class Movie {
 	private String title;
 	private int year;
 	private String director;
-	protected List<Star> stars = new ArrayList<Star>();
-	private List<Genre> genres;
+//	protected List<Star> stars = new ArrayList<Star>();
+//	private List<Genre> genres;
 	
 	public Movie(){
 	}
@@ -51,10 +51,10 @@ public class Movie {
 		this.director = director;
 	}
 	
-	public List<Star> getStars(){
-		return stars;
-	}
-	
+//	public List<Star> getStars(){
+//		return stars;
+//	}
+/*	
 	public void setListofStars() {
 		System.out.println("enter set list of stars");
 		Connection connection;
@@ -131,5 +131,5 @@ public class Movie {
 			System.out.println(g.getName());
 		}
 	}
-	
+*/	
 }
