@@ -36,6 +36,21 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+		System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
+        PrintWriter out = response.getWriter();
+
+		// Verify CAPTCHA.
+		boolean valid = VerifyUtils.verify(gRecaptchaResponse);
+		if (!valid) {
+		    //errorString = "Captcha invalid!";
+		    out.println("<HTML>" +
+				"<HEAD><TITLE>" +
+				"MovieDB: Error" +
+				"</TITLE></HEAD>\n<BODY>" +
+				"<P>Recaptcha WRONG!!!! </P></BODY></HTML>");
+		    return;
+		}
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
@@ -45,7 +60,6 @@ public class Login extends HttpServlet {
         String loginPasswd = "mypassword";
         String loginUrl = "jdbc:mysql://localhost:3306/moviedb?autoReconnect=true&useSSL=false";
         
-        PrintWriter out = response.getWriter();
         
         try {
         		Class.forName("com.mysql.jdbc.Driver").newInstance();

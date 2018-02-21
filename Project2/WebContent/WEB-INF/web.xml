@@ -83,7 +83,7 @@
     <servlet-name>UpdateShoppingCart</servlet-name>
     <url-pattern>/updateShoppingCart</url-pattern>
   </servlet-mapping>
-     <servlet>
+  <servlet>
     <servlet-name>CheckoutServlet</servlet-name>
     <servlet-class>Fabflix.CheckoutServlet</servlet-class>
   </servlet>
@@ -91,4 +91,9 @@
     <servlet-name>CheckoutServlet</servlet-name>
     <url-pattern>/checkout</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>RecaptchaServlet</servlet-name>
+  	<servlet-class>Fablix.RecaptchaServlet</servlet-class>
+  </servlet>
+
 </web-app>
